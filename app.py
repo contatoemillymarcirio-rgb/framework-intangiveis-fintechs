@@ -934,17 +934,18 @@ def calc_axis(axis):
     Calcula o percentual do eixo de forma padronizada:
     respostas positivas (Sim) / total de perguntas do eixo × 100.
 
-    Cada elemento possui três perguntas. Assim, o denominador é fixo
-    para cada eixo e "Não" e "Não identificado" não são convertidos
-    artificialmente em respostas positivas. Isso mantém a leitura
-    comparável entre os três eixos.
+    O denominador considera todas as perguntas configuradas para o eixo,
+    mantendo os resultados comparáveis. Somente respostas "Sim" contam
+    como positivas; perguntas não respondidas permanecem distintas de
+    "Não identificado".
     """
     items = axis_items(axis)
-    total_questions = len(items) * 3
+    questions = AXES.get(axis, {}).get("perguntas", [])
+    total_questions = len(items) * len(questions)
     yes = 0
 
     for item in items:
-        for i in range(1, 4):
+      for i in range(1, len(questions) + 1):
             key = f"{norm(axis)}_{norm(item)}_{i}"
             if st.session_state.scores.get(key) == "Sim":
                 yes += 1
@@ -953,8 +954,9 @@ def calc_axis(axis):
     answered = sum(
         1
         for item in items
-        for i in range(1, 4)
-        if st.session_state.scores.get(f"{norm(axis)}_{norm(item)}_{i}") in ("Sim", "Não")
+        for i in range(1, len(questions) + 1)
+        if st.session_state.scores.get(f"{norm(axis)}_{norm(item)}_{i}")
+        in ("Sim", "Não", "Não identificado")
     )
     return round(pct, 1), yes, total_questions, answered
 
@@ -1124,15 +1126,16 @@ def axis_page(axis=None):
         "**Três perguntas orientam a análise de cada elemento: ele é reconhecido, mensurado e evidenciado pela empresa?**"
     )
     st.caption(
-        "Marque Sim, Não ou Não identificado. O mesmo elemento pode estar relacionado a mais de um eixo."
+      "Marque Sim, Não ou Não identificado; perguntas ainda não preenchidas permanecem como Não respondido. "
+      "O mesmo elemento pode estar relacionado a mais de um eixo."
     )
 
-    options = ["Sim", "Não", "Não identificado"]
+    options = ["Não respondido", "Sim", "Não", "Não identificado"]
     for item in items:
         st.markdown(f"#### {item}")
         for i, question in enumerate(a["perguntas"], 1):
             key = f"{norm(axis)}_{norm(item)}_{i}"
-            current = st.session_state.scores.get(key, "Não identificado")
+            current = st.session_state.scores.get(key, "Não respondido")
             if current not in options:
                 current = "Não identificado"
             answer = st.selectbox(
@@ -1156,66 +1159,20 @@ def axis_page(axis=None):
     else:
         st.caption("Nenhuma resposta válida registrada ainda.")
 
-def diagnostic_pie_data():
-    """Retorna os percentuais reais dos três eixos.
-
-    Os eixos podem ultrapassar 100% em conjunto porque um mesmo intangível
-    pode participar de mais de uma dimensão. Por isso, o anel usa escala
-    relativa apenas para a geometria e preserva os percentuais reais nos rótulos.
-    """
-    return {
-        "Contábil": float(calc_axis("Contábil")[0]),
-        "Financeiro": float(calc_axis("Financeiro")[0]),
-        "Estratégico": float(calc_axis("Estratégico")[0]),
-    }
-
-
-def render_diagnostic_infographic(values):
-    """Exibe somente o gráfico circular e sua legenda."""
-    labels = ["Contábil", "Financeiro", "Estratégico"]
-    colors = {
-        "Contábil": "#7E9F39",
-        "Financeiro": "#7968D6",
-        "Estratégico": "#3BA8A3",
-    }
-
-    # A geometria do anel é apenas visual: os rótulos da legenda
-    # preservam os percentuais calculados independentemente em cada eixo.
-    total = sum(max(0.0, float(values.get(x, 0))) for x in labels)
-    vals = (
-        {x: 1.0 for x in labels}
-        if total <= 0
-        else {x: max(0.0, float(values.get(x, 0))) for x in labels}
-    )
-    denom = sum(vals.values())
-
-    a = vals["Contábil"] / denom * 360
-    b = a + vals["Financeiro"] / denom * 360
-
-    gradient = (
-        f"conic-gradient({colors['Contábil']} 0deg {a:.3f}deg, "
-        f"{colors['Financeiro']} {a:.3f}deg {b:.3f}deg, "
-        f"{colors['Estratégico']} {b:.3f}deg 360deg)"
-    )
-
-    donut_html = f"""
-    <div class="donut-panel">
-      <div class="donut-wrap">
-        <div class="donut" style="background:{gradient};">
-          <div class="donut-hole">
-            <strong>INTANGÍVEIS<br>ORGANIZACIONAIS</strong>
-            <span>visão integrada</span>
-          </div>
-        </div>
-      </div>
-      <div class="donut-legend">
-        <span><i style="background:{colors['Contábil']}"></i>Contábil <b>{float(values.get('Contábil',0)):.1f}%</b></span>
-        <span><i style="background:{colors['Financeiro']}"></i>Financeiro <b>{float(values.get('Financeiro',0)):.1f}%</b></span>
-        <span><i style="background:{colors['Estratégico']}"></i>Estratégico <b>{float(values.get('Estratégico',0)):.1f}%</b></span>
-      </div>
-    </div>
-    """
-    st.html(donut_html)
+def render_diagnostic_percentages(results):
+    """Exibe percentuais independentes e cobertura de respostas por eixo."""
+    columns = st.columns(len(AXES))
+    for column, axis in zip(columns, AXES):
+        pct, yes, total, answered = results[axis]
+        coverage = (100.0 * answered / total) if total else 0.0
+        with column:
+            st.markdown(f"### {axis}")
+            st.metric("Respostas positivas", f"{pct:.1f}%")
+            st.progress(pct / 100)
+            st.caption(
+                f"{yes}/{total} positivas · {answered}/{total} respondidas "
+                f"({coverage:.1f}% de cobertura)"
+            )
 
 # ============================================================
 # PÁGINAS DOS EIXOS — despacho da navegação
@@ -1270,13 +1227,12 @@ if page == "05 · Diagnóstico":
     </div>
     """)
 
-    pie_values = diagnostic_pie_data()
     st.html('<div class="section-kicker">VISUALIZAÇÃO DOS EIXOS</div>')
-    st.html('<div class="section-title" style="font-size:2.7rem">A distribuição relativa dos três eixos.</div>')
-    st.html('<div class="note">A composição circular traduz os três resultados em uma leitura visual. Os rótulos preservam os percentuais reais calculados para cada eixo.</div>')
-    render_diagnostic_infographic(pie_values)
+    st.html('<div class="section-title" style="font-size:2.7rem">Respostas positivas por eixo.</div>')
+    st.html('<div class="note">Cada percentual usa o total de perguntas previstas daquele eixo como base. As barras são independentes e não precisam somar 100%.</div>')
+    render_diagnostic_percentages(vals)
 
-    st.html('<div class="note" style="margin-top:1.3rem">Interpretação: cada percentual corresponde às respostas “Sim” divididas pelo total de perguntas previstas para o respectivo eixo. Os três percentuais são calculados separadamente e não precisam somar 100%. O diagnóstico não representa uma avaliação de desempenho empresarial.</div>')
+    st.html('<div class="note" style="margin-top:1.3rem">As perguntas ainda não respondidas aparecem na cobertura, mas não são classificadas como “Não identificado”. O diagnóstico não representa uma avaliação de desempenho empresarial.</div>')
 
     st.html('''
     <div class="closing-card">

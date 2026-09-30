@@ -85,13 +85,12 @@ def col(df, names):
 
 MATRIX_PATH = find_matrix()
 if MATRIX_PATH is None:
-    st.error("Não encontrei a matriz integrada. Verifique se o arquivo 03_MATRIZ_INTEGRACAO.xlsx está na pasta do aplicativo.")
-    st.stop()
+    _loaded = (pd.DataFrame(), "")
+else:
+    _loaded = load_matrix(str(MATRIX_PATH))
 
 # A matriz é uma fonte de apoio do framework. A interface visual não depende
 # de uma aba específica do Excel; por isso o carregamento é feito de forma robusta.
-_loaded = load_matrix(str(MATRIX_PATH))
-
 if isinstance(_loaded, tuple) and len(_loaded) == 2:
     _a, _b = _loaded
     # Normalmente: (DataFrame, nome_da_aba)
@@ -1104,7 +1103,7 @@ def axis_page(axis=None):
     "">
       <div style="position:absolute;right:-20px;top:-75px;width:190px;height:190px;border:1px solid rgba(255,255,255,.12);border-radius:50%;"></div>
       <div style="font-size:11px;font-weight:800;letter-spacing:.16em;opacity:.72;margin-bottom:14px;position:relative;z-index:2;">{a['num']} · EIXO {axis.upper()}</div>
-      <div style="font-size:56px;line-height:.95;letter-spacing:-.045em;margin:0 0 18px;font-weight:800;position:relative;z-index:2;">{axis}.</div>
+      <div style="font-size:56px;line-height:.95;letter-spacing:-.045em;margin:0 0 18px;font-weight:800;position:relative;z-index:2;">{axis}</div>
       <div style="font-size:14px;line-height:1.55;margin:0;max-width:850px;color:#E5E7EB;position:relative;z-index:2;">{desc}</div>
     </div>
     """

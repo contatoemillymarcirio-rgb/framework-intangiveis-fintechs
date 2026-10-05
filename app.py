@@ -1228,7 +1228,7 @@ def vg_concept():
   {arrow}
   {node("Etapa 4", "Integração", "Mensuração integrada: evidência nos três eixos e conexão entre eles.", "integ")}
   {arrow}
-  {node("Saída", "Diagnóstico", "Visão integrada da mensuração e da evidência dos ativos intangíveis.", "final")}
+  {node("", "Diagnóstico", "Visão integrada da mensuração e da evidência dos ativos intangíveis.", "final")}
   <div class="vg-flow-foot">Estrutura do framework (conceitual). Os resultados da aplicação às {VG["obs"]} observações empresa-ano aparecem nas seções seguintes.</div>
 </section>''')
 

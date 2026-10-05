@@ -1432,7 +1432,6 @@ if page == "01 · Visão geral":
 {vg_flowchart()}
 {vg_matrix()}
 {vg_triangulation()}
-{vg_integration()}
 <div class="section-kicker">O que o usuário faz</div><div class="section-title">O quadro transforma evidência em diagnóstico.</div><div class="findings"><div class="finding"><div class="finding-no">01 · IDENTIFICAR</div><div><h3>Mapear o intangível</h3><p>Selecionar os recursos intangíveis relevantes para a organização.</p></div></div><div class="finding"><div class="finding-no">02 · RELACIONAR</div><div><h3>Observar os três eixos</h3><p>Responder questões objetivas em cada dimensão aplicável ao recurso.</p></div></div><div class="finding"><div class="finding-no">03 · DIAGNÓSTICO</div><div><h3>Visualizar o perfil</h3><p>Os resultados são consolidados automaticamente em percentuais por dimensão.</p></div></div><div class="finding"><div class="finding-no">04 · INTEGRAR</div><div><h3>Interpretar o conjunto</h3><p>O diagnóstico evidencia como os intangíveis se distribuem e se sobrepõem entre as perspectivas.</p></div></div></div>
 '''
     st.markdown(page1, unsafe_allow_html=True)

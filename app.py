@@ -1202,11 +1202,11 @@ def vg_base_stats():
 
 def vg_concept():
     def node(k, h, p="", cls="plain"):
-        return f'<div class="vg-node {cls}">' + (f'<div class="k">{k}</div>' if k else '') + f'<h4>{h}</h4>' + (f'<p>{p}</p>' if p else '') + '</div>'
+        return f'<div class="vg-node {cls}"><div class="k">{k}</div><h4>{h}</h4>' + (f'<p>{p}</p>' if p else '') + '</div>'
     arrow = '<div class="vg-arrow">↓</div>'
     lanes = [("c", "EIXO CONTÁBIL", "Contábil", ["Reconhecimento", "Mensuração", "Evidenciação"]),
              ("f", "EIXO FINANCEIRO", "Financeiro", ["Valor econômico", "Desempenho", "Retorno"]),
-             ("e", "EIXO ESTRATÉGICO", "Estratégico", ["Escalabilidade", "Inovação", "Diferenciação"])]
+             ("e", "EIXO ESTRATÉGICO", "Estratégico", ["Capacidades", "Inovação", "Diferenciação"])]
     lane_html = "".join(
         f'<div class="vg-lane {c}"><div class="lh"><div class="k">{k}</div><h5>{h}</h5></div>'
         f'<div class="lb"><ul class="vg-cl">' + "".join(f"<li>{i}</li>" for i in items) + '</ul></div></div>'
@@ -1228,7 +1228,7 @@ def vg_concept():
   {arrow}
   {node("Etapa 4", "Integração", "Mensuração integrada: evidência nos três eixos e conexão entre eles.", "integ")}
   {arrow}
-  {node("", "Diagnóstico", "Visão integrada da mensuração e da evidência dos ativos intangíveis.", "final")}
+  {node("Saída", "Diagnóstico", "Visão integrada da mensuração e da evidência dos ativos intangíveis.", "final")}
   <div class="vg-flow-foot">Estrutura do framework (conceitual). Os resultados da aplicação às {VG["obs"]} observações empresa-ano aparecem nas seções seguintes.</div>
 </section>''')
 
@@ -1240,7 +1240,7 @@ def vg_flowchart():
 <section class="vg-section vg-flow">
   <div class="vg-head"><span class="eyebrow">Fluxograma do framework</span>
   <h2>Do intangível ao valor real de mercado.</h2>
-  <p>Este fluxo representa o framework de mensuração de ativos intangíveis desenvolvido na dissertação. Conforme a estrutura proposta na pesquisa, o percurso parte do ativo intangível, cruza as três fontes de evidência, passa pelos eixos contábil, financeiro e estratégico, exige conexão explícita entre eles e chega à leitura integrada do valor do intangível em fintechs e empresas de base tecnológica.</p></div>
+  <p>O percurso da mensuração parte do ativo intangível, cruza as três fontes de evidência, passa pelos eixos contábil, financeiro e estratégico, exige conexão explícita entre eles e chega à leitura integrada do valor do intangível em fintechs e empresas de base tecnológica.</p></div>
 
   <div class="vg-node entry"><div class="k">Entrada</div><h4>Ativo intangível da fintech / empresa de base tecnológica</h4>
   <p>Identificação do fenômeno: ativo intangível e tecnologia/inovação só entram com evidência documental explícita. Ser fintech ou usar tecnologia não basta.</p></div>
@@ -1365,6 +1365,33 @@ def vg_triangulation():
   <div class="vg-cap">Percentual de variáveis com evidência explícita em cada eixo, em 5 anos por empresa. Os percentuais são agregados por eixo e dependem do nº de variáveis; no eixo financeiro, 100% da evidência é valor contábil. Fonte: FINTCHS_AMOSTRA_ajustado, abas EIXOS e RESUMO DETALHADO.</div>
 </section>''')
 
+def vg_integration():
+    I = VG["integ"]
+    tiles = "".join(
+        f'<div class="vg-stat {"some" if v else "zero"}"><b>{v}</b><span>{k}</span><small>de {VG["obs"]} observações empresa-ano</small></div>'
+        for k, v in I.items())
+    return _h(f'''
+<section class="vg-section">
+  <div class="vg-head"><span class="eyebrow">Integração e limitações</span>
+  <h2>O que a integração mostra e o que ela não permite afirmar.</h2>
+  <p>Somente a conexão contábil-estratégica foi observada (9 de 120 células de integração, 7,5%). As demais conexões e a mensuração integrada não aparecem no banco atual, e o framework não presume o que o documento não diz.</p></div>
+  <div class="vg-int">{tiles}</div>
+  <div class="vg-rules">
+    <div class="vg-rule"><h4>Regra de não inferir</h4><ul>
+      <li>1 só com evidência explícita; ausência vale 0, não é estimada.</li>
+      <li>Métricas como EVA, VAIC e Tobin's Q não são reconstruídas a partir de outras variáveis.</li>
+      <li>Recursos estratégicos não viram ativos contábeis automaticamente; NPS e market share não são tratados como intangíveis.</li></ul></div>
+    <div class="vg-rule"><h4>Rastreabilidade</h4><ul>
+      <li>Literatura: artigo, DOI e classificação na leitura integral.</li>
+      <li>Normas: norma, parágrafo e natureza do requisito (obrigatório, condicionado).</li>
+      <li>Empresas: empresa, ano, página do PDF e trecho original, na aba COLETA.</li></ul></div>
+    <div class="vg-rule"><h4>Limitações</h4><ul>
+      <li>Amostra de 6 fintechs e {VG["obs"]} observações; os resultados descrevem a amostra.</li>
+      <li>Heterogeneidade conceitual do capital intelectual e baixa padronização de mensuração na literatura.</li>
+      <li>Normas US GAAP (ASU 2019-06 e 2025-06) entram só como comparativo, sem mistura com a amostra brasileira.</li></ul></div>
+  </div>
+</section>''')
+
 # ============================================================
 # 01 — VISÃO GERAL
 # ============================================================
@@ -1400,11 +1427,12 @@ if page == "01 · Visão geral":
 <div class="stat-strip"><div class="stat"><div class="stat-num">39</div><div class="stat-label">Artigos na RSL</div><div class="stat-note">Corpus final da revisão sistemática.</div></div><div class="stat"><div class="stat-num">3</div><div class="stat-label">Eixos</div><div class="stat-note">Contábil · Financeiro · Estratégico.</div></div><div class="stat"><div class="stat-num">2021–2025</div><div class="stat-label">Período documental</div><div class="stat-note">Recorte utilizado na construção operacional.</div></div></div>
 {vg_base_stats()}
 {vg_concept()}
+{vg_flowchart()}
 <section class="framework-diagram"><div class="diagram-title"><span class="eyebrow">Arquitetura do framework</span><h2>Do ativo intangível ao diagnóstico integrado</h2><p>Um percurso operacional em seis etapas para identificar, analisar e integrar os eixos contábil, financeiro e estratégico.</p></div><div class="framework-steps">{cards}</div><div class="outcome-bar"><div class="outcome-icon">★</div><div><strong>Resultado:</strong><span> perfil integrado dos ativos intangíveis, evidenciando a presença relativa dos eixos <b>Contábil</b>, <b>Financeiro</b> e <b>Estratégico</b>.</span></div></div><div class="diagram-foot">Framework operacional de mensuração integrada de ativos intangíveis</div></section>
 <section class="axes-section"><div class="axes-intro"><span class="eyebrow">03 eixos operacionais</span><h2>Contábil, financeiro e estratégico.</h2><p>O mesmo ativo intangível pode estar relacionado a mais de um eixo. A classificação apresentada abaixo orienta a leitura do framework e corresponde aos intangíveis considerados nas etapas de análise.</p></div><div class="axes-columns">{columns_html}</div></section>
-{vg_flowchart()}
 {vg_matrix()}
 {vg_triangulation()}
+{vg_integration()}
 <div class="section-kicker">O que o usuário faz</div><div class="section-title">O quadro transforma evidência em diagnóstico.</div><div class="findings"><div class="finding"><div class="finding-no">01 · IDENTIFICAR</div><div><h3>Mapear o intangível</h3><p>Selecionar os recursos intangíveis relevantes para a organização.</p></div></div><div class="finding"><div class="finding-no">02 · RELACIONAR</div><div><h3>Observar os três eixos</h3><p>Responder questões objetivas em cada dimensão aplicável ao recurso.</p></div></div><div class="finding"><div class="finding-no">03 · DIAGNÓSTICO</div><div><h3>Visualizar o perfil</h3><p>Os resultados são consolidados automaticamente em percentuais por dimensão.</p></div></div><div class="finding"><div class="finding-no">04 · INTEGRAR</div><div><h3>Interpretar o conjunto</h3><p>O diagnóstico evidencia como os intangíveis se distribuem e se sobrepõem entre as perspectivas.</p></div></div></div>
 '''
     st.markdown(page1, unsafe_allow_html=True)
@@ -1537,7 +1565,7 @@ if page == "05 · Diagnóstico":
     st.html("""
     <div class="page-hero" style="background:#101828;">
       <div class="num">05 · SAÍDA DO FRAMEWORK</div>
-      <h1>diagnóstico<br>integrado.</h1>
+      <h1>Diagnóstico<br>integrado.</h1>
       <p>O resultado aparece automaticamente a partir das respostas registradas nos três eixos. Não há uma nova etapa de perguntas.</p>
     </div>
     """)

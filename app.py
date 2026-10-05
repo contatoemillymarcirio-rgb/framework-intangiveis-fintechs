@@ -123,9 +123,12 @@ AXIS_ITEMS = {
         "Goodwill / Ágio",
         "Intangíveis identificáveis",
         "Software",
+        "Software em desenvolvimento",
+        "P&D / desenvolvimento",
         "Marca / trademark",
         "Relacionamento / carteira de clientes",
         "Licenças",
+        "Direito de exclusividade",
         "Direito de uso de software",
         "Combinação de negócios",
     ],
@@ -182,6 +185,9 @@ INTANGIBLE_DESC = {
     "Goodwill / Ágio": "Ágio por expectativa de rentabilidade futura associado a combinações de negócios.",
     "Intangíveis identificáveis": "Ativos intangíveis separáveis ou decorrentes de direitos contratuais ou legais, distintos do goodwill.",
     "Software": "Aplicações e sistemas digitais utilizados na operação, nos produtos ou nos serviços da organização.",
+    "Software em desenvolvimento": "Software ainda em fase de desenvolvimento, com gastos capitalizados e ainda não disponível para uso.",
+    "P&D / desenvolvimento": "Gastos de pesquisa e desenvolvimento e critérios para sua capitalização ou reconhecimento como despesa.",
+    "Direito de exclusividade": "Direitos de exclusividade contratuais ou legais reconhecidos como ativo intangível.",
     "Marca / trademark": "Direito e valor associado à identificação e ao reconhecimento de uma marca.",
     "Relacionamento / carteira de clientes": "Valor associado à carteira, aos vínculos e às relações mantidas com clientes.",
     "Licenças": "Direitos concedidos para utilização de tecnologias, serviços, marcas ou outros recursos.",
@@ -878,6 +884,119 @@ h1,h2,h3{letter-spacing:-.04em;}
 .axis-hero-title{font-size:56px;line-height:.95;letter-spacing:-.045em;margin:0 0 18px;font-weight:800;position:relative;z-index:2;}
 .axis-hero-desc{font-size:14px;line-height:1.55;margin:0;max-width:850px;color:#E5E7EB;position:relative;z-index:2;}
 @media(max-width:900px){.axis-hero-title{font-size:42px;}}
+
+/* ===== VISÃO GERAL — fluxograma, matriz 3x3, triangulação e integração ===== */
+.vg-section{margin-top:3rem;}
+.vg-head .eyebrow{background:#EAF1F7;color:#173B57;}
+.vg-head h2{color:#173B57;font-size:clamp(1.9rem,3.4vw,3.2rem);line-height:1.02;margin:.65rem 0 .5rem;letter-spacing:-.045em;}
+.vg-head p{color:#667085;max-width:900px;line-height:1.65;margin:0 0 1.4rem;}
+.vg-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:1.4rem;}
+.vg-stat{background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:1rem 1.1rem;box-shadow:0 6px 18px rgba(16,24,40,.045);}
+.vg-stat b{display:block;font-size:2rem;font-weight:900;letter-spacing:-.05em;color:#173B57;line-height:1.05;}
+.vg-stat span{display:block;font-weight:700;color:#101828;font-size:.88rem;margin-top:.3rem;}
+.vg-stat small{display:block;color:#667085;font-size:.78rem;line-height:1.45;margin-top:.2rem;}
+
+/* fluxograma */
+.vg-flow{background:#fff;border:1px solid #DCE2EA;border-radius:8px;padding:2rem 1.4rem 1.6rem;box-shadow:0 12px 34px rgba(16,24,40,.06);}
+.vg-node{border-radius:8px;padding:.9rem 1.1rem;text-align:center;margin:0 auto;}
+.vg-node .k{font-size:.66rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;opacity:.75;}
+.vg-node h4{margin:.25rem 0 .2rem;font-size:1.12rem;letter-spacing:-.02em;}
+.vg-node p{margin:0;font-size:.84rem;line-height:1.5;}
+.vg-node.entry{background:#101828;color:#fff;max-width:760px;}
+.vg-node.entry p{color:#D0D5DD;}
+.vg-node.entry h4{color:#fff;}
+.vg-arrow{text-align:center;color:#98A2B3;font-size:1.5rem;line-height:1;margin:.5rem 0;}
+.vg-arrow3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;text-align:center;color:#98A2B3;font-size:1.5rem;line-height:1;margin:.5rem 0;}
+.vg-sources{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.vg-src{background:#F7F8FA;border:1px solid #E4E7EC;border-radius:8px;padding:.85rem 1rem;}
+.vg-src .k{font-size:.66rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#7A5CFF;}
+.vg-src b{display:block;font-size:1.05rem;color:#101828;margin:.2rem 0;}
+.vg-src p{margin:0;font-size:.8rem;line-height:1.5;color:#667085;}
+.vg-lanes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch;}
+.vg-lane{border:1px solid #D7DEE7;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;background:#fff;}
+.vg-lane .lh{padding:.85rem 1rem;color:#fff;}
+.vg-lane .lh .k{font-size:.66rem;font-weight:900;letter-spacing:.16em;opacity:.8;}
+.vg-lane .lh h5{margin:.2rem 0 0;font-size:1.3rem;color:#fff;letter-spacing:-.03em;}
+.vg-lane.c .lh{background:#173B57;}.vg-lane.f .lh{background:#1769D2;}.vg-lane.e .lh{background:#167F88;}
+.vg-lane .lb{padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.55rem;flex:1;}
+.vg-gate{background:#FFF8E6;border:1px dashed #E0A800;border-radius:8px;padding:.7rem .8rem;font-size:.82rem;line-height:1.5;color:#4A3B00;}
+.vg-gate b{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#946B00;margin-bottom:.15rem;}
+.vg-out{border-radius:8px;padding:.65rem .8rem;font-size:.8rem;line-height:1.5;}
+.vg-out b{display:inline-block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;margin-right:.3rem;}
+.vg-out.yes{background:#ECFDF3;border:1px solid #ABEFC6;color:#05603A;}
+.vg-out.no{background:#FEF3F2;border:1px solid #FECDCA;color:#912018;}
+.vg-lane .metric{margin-top:auto;padding-top:.6rem;border-top:1px solid #EAECF0;font-size:.78rem;color:#667085;}
+.vg-lane .metric b{font-size:1.5rem;color:#101828;letter-spacing:-.04em;margin-right:.35rem;}
+.vg-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:900px;margin:.9rem auto 0;}
+.vg-link{background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:.6rem .7rem;font-size:.78rem;color:#344054;}
+.vg-link b{display:block;font-size:1.4rem;color:#101828;letter-spacing:-.04em;}
+.vg-node.integ{background:#F4F0FF;border:1px solid #D9CEFF;max-width:960px;}
+.vg-node.integ .k{color:#5B3FD6;}
+.vg-node.gate2{background:#FFF8E6;border:1px dashed #E0A800;max-width:760px;color:#4A3B00;}
+.vg-node.gate2 .k{color:#946B00;}
+.vg-node.final{background:linear-gradient(135deg,#173B57,#167F88);color:#fff;max-width:960px;padding:1.3rem 1.4rem;}
+.vg-node.final h4{color:#fff;font-size:1.5rem;}
+.vg-node.final p{color:#E6F4F5;}
+.vg-parcels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:.9rem 0 .6rem;}
+.vg-parcel{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:.6rem .7rem;font-size:.8rem;line-height:1.45;text-align:left;}
+.vg-parcel b{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85;}
+.vg-flow-foot{color:#667085;font-size:.8rem;line-height:1.55;margin:1rem .2rem 0;}
+.vg-cl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.4rem;}
+.vg-cl li{background:#F7F8FA;border:1px solid #E4E7EC;border-radius:8px;padding:.5rem .7rem;font-size:.86rem;color:#344054;text-align:left;}
+.vg-node.plain{background:#F7F8FA;border:1px solid #D7DEE7;max-width:760px;color:#101828;}
+.vg-node.plain .k{color:#667085;}
+
+/* matriz 3x3 */
+.vg-matrix{display:grid;grid-template-columns:minmax(190px,.8fr) repeat(3,minmax(0,1.5fr));gap:10px;}
+.vg-mh{border-radius:8px;padding:.8rem 1rem;color:#fff;font-weight:800;font-size:1.05rem;letter-spacing:-.02em;display:flex;align-items:center;}
+.vg-mh.c{background:#173B57;}.vg-mh.f{background:#1769D2;}.vg-mh.e{background:#167F88;}.vg-mh.blank{background:transparent;}
+.vg-mr{background:#101828;color:#fff;border-radius:8px;padding:.9rem 1rem;}
+.vg-mr h4{margin:0 0 .35rem;font-size:1.05rem;color:#fff;}
+.vg-mr .rule{font-size:.74rem;line-height:1.5;color:#D0D5DD;margin-top:.45rem;}
+.vg-mr .rule b{color:#C7F36A;letter-spacing:.1em;font-size:.62rem;text-transform:uppercase;display:block;}
+.vg-mc{background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:.9rem 1rem;font-size:.82rem;line-height:1.55;color:#344054;box-shadow:0 6px 18px rgba(16,24,40,.04);}
+.vg-mc .big{display:block;font-size:1.7rem;font-weight:900;letter-spacing:-.05em;color:#101828;line-height:1.05;margin-bottom:.2rem;}
+.vg-mc .src{display:block;margin-top:.55rem;padding-top:.45rem;border-top:1px solid #EAECF0;font-size:.72rem;color:#667085;}
+.vg-mc .src b{color:#475467;}
+.vg-mc.gap{background:#FFFBF2;border-color:#F3DFA8;}
+
+/* triangulação */
+.vg-tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.vg-tcard{background:#fff;border:1px solid #D7DEE7;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px rgba(16,24,40,.045);}
+.vg-tcard .th{padding:.75rem 1rem;color:#fff;font-weight:800;display:flex;justify-content:space-between;align-items:center;gap:.5rem;}
+.vg-tcard.c .th{background:#173B57;}.vg-tcard.f .th{background:#1769D2;}.vg-tcard.e .th{background:#167F88;}
+.vg-badge{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:900;background:rgba(255,255,255,.2);border-radius:999px;padding:.25rem .6rem;white-space:nowrap;}
+.vg-tcard .tb{padding:.9rem 1rem 1rem;font-size:.82rem;line-height:1.55;color:#344054;}
+.vg-tcard ul{margin:.4rem 0 0;padding-left:1.1rem;}
+.vg-bar{height:10px;background:#EAECF0;border-radius:999px;overflow:hidden;margin:.4rem 0 .15rem;}
+.vg-bar i{display:block;height:100%;border-radius:999px;}
+.vg-tcard.c .vg-bar i{background:#173B57;}.vg-tcard.f .vg-bar i{background:#1769D2;}.vg-tcard.e .vg-bar i{background:#167F88;}
+.vg-callout{margin-top:1rem;background:#101828;color:#fff;border-radius:8px;padding:1.2rem 1.4rem;line-height:1.7;}
+.vg-callout b{color:#C7F36A;}
+.vg-table{width:100%;border-collapse:collapse;margin-top:1rem;background:#fff;border:1px solid #D7DEE7;border-radius:8px;overflow:hidden;font-size:.84rem;}
+.vg-table th{background:#F2F4F7;text-align:left;padding:.55rem .8rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#475467;}
+.vg-table td{padding:.55rem .8rem;border-top:1px solid #EAECF0;color:#344054;}
+.vg-table td.n{font-variant-numeric:tabular-nums;}
+.vg-cap{color:#667085;font-size:.78rem;margin-top:.4rem;line-height:1.5;}
+
+/* integração e limitações */
+.vg-int{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+.vg-int .vg-stat.zero b{color:#B42318;}
+.vg-int .vg-stat.some b{color:#05603A;}
+.vg-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px;}
+.vg-rule{background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:1rem 1.1rem;font-size:.84rem;line-height:1.6;color:#344054;}
+.vg-rule h4{margin:0 0 .4rem;color:#173B57;font-size:1.02rem;}
+.vg-rule ul{margin:.3rem 0 0;padding-left:1.1rem;}
+@media(max-width:1000px){
+  .vg-stats,.vg-int{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .vg-sources,.vg-lanes,.vg-tri,.vg-rules,.vg-parcels,.vg-links{grid-template-columns:1fr;}
+  .vg-arrow3{display:none;}
+  .vg-matrix{grid-template-columns:1fr;}
+  .vg-mh.blank{display:none;}
+}
+
+.vg-mc .tag{display:none;font-size:.64rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#7A5CFF;margin-bottom:.2rem;}
+@media(max-width:1000px){.vg-mc .tag{display:block}.vg-mh{display:none}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -1027,6 +1146,226 @@ if page == "APRESENTAÇÃO":
     st.markdown('</div>', unsafe_allow_html=True)
 
 # ============================================================
+# VISÃO GERAL — dados e blocos HTML (fluxograma, matriz 3×3,
+# triangulação, integração e limitações)
+# Números extraídos das planilhas ajustadas da pesquisa:
+#   Revisao_Sistematica_AJUSTADA.xlsx (CONTROLE CONSISTÊNCIA, OUTRAS ANALISES, EIXOS PARA FRAMEWORK)
+#   Extracao_Normativa_AJUSTADA.xlsx  (Extracao, Framework, HIERARQUIA NORMATIVA)
+#   FINTCHS_AMOSTRA_ajustado.xlsm     (EIXOS, RESUMO EIXOS, RESUMO DETALHADO, DIVERGENCIAS, AUDITORIA EIXOS, FRAMEWORK AJUSTADO)
+# ============================================================
+VG = {
+    "rsl_funil": [("Registros identificados", 655), ("Após organização", 652), ("Leitura completa", 60), ("Corpus final", 39)],
+    "rsl_axis": {"Contábil": 14, "Financeiro": 19, "Estratégico": 26},   # artigos por abordagem declarada
+    "normas": {"requisitos": 117, "referencias": 21},
+    "obs": 30,
+    "trechos": 61,
+    "axis": {   # evidências (1) / células possíveis, por eixo — aba RESUMO EIXOS
+        "Contábil": {"ev": 207, "tot": 510, "vars": 17},
+        "Financeiro": {"ev": 29, "tot": 270, "vars": 9},
+        "Estratégico": {"ev": 71, "tot": 480, "vars": 16},
+    },
+    "ident": {"ev": 22, "tot": 60, "vars": 2},   # Identificação do fenômeno
+    "integ_axis": {"ev": 9, "tot": 120, "vars": 4},   # Integração dos eixos
+    "fin_sem_vc": {"ev": 0, "tot": 240, "vars": 8},   # Financeiro sem valor contábil
+    "integ": {"Contábil ↔ Financeiro": 0, "Contábil ↔ Estratégico": 9, "Financeiro ↔ Estratégico": 0, "Mensuração integrada": 0},
+    "empresas": [   # % de presença por eixo e nº de evidências de integração (5 anos cada)
+        ("BTG Pactual", 38.8, 11.1, 10.0, 2),
+        ("Banco Inter", 48.2, 8.9, 3.8, 1),
+        ("Nubank", 37.6, 11.1, 0.0, 0),
+        ("PagSeguro", 38.8, 11.1, 17.5, 5),
+        ("StoneCo", 44.7, 11.1, 15.0, 1),
+        ("XP Inc.", 35.3, 11.1, 42.5, 0),
+    ],
+}
+
+def _pc(v):
+    """Formata percentual no padrão brasileiro (vírgula decimal)."""
+    return f"{v:.1f}".replace(".", ",") + "%"
+
+def _h(s):
+    """Compacta HTML em uma linha (sem linhas em branco/indentação), evitando que o Markdown quebre o bloco."""
+    return " ".join(line.strip() for line in s.splitlines() if line.strip())
+
+def _vg_pct(axis):
+    d = VG["axis"][axis]
+    return 100.0 * d["ev"] / d["tot"]
+
+def vg_base_stats():
+    f = VG["rsl_funil"]
+    return _h(f'''
+<div class="vg-stats">
+  <div class="vg-stat"><b>{f[0][1]} → {f[3][1]}</b><span>Funil da RSL (PRISMA)</span><small>{f[0][1]} registros em WoS, Scopus e SPELL; {f[1][1]} após organização; {f[2][1]} lidos na íntegra; {f[3][1]} artigos incluídos.</small></div>
+  <div class="vg-stat"><b>{VG["normas"]["requisitos"]}</b><span>Requisitos normativos extraídos</span><small>{VG["normas"]["referencias"]} normas e referências (CPC, IFRS/IAS e comparativo US GAAP).</small></div>
+  <div class="vg-stat"><b>6 · {VG["obs"]}</b><span>Fintechs · observações empresa-ano</span><small>Nubank, PagSeguro, XP Inc., StoneCo, Banco Inter e BTG Pactual, 2021–2025; {VG["trechos"]} trechos coletados.</small></div>
+  <div class="vg-stat"><b>3 fontes × 3 eixos</b><span>Matriz de triangulação</span><small>Literatura, normas e empresas lidas sobre os eixos contábil, financeiro e estratégico.</small></div>
+</div>''')
+
+def vg_concept():
+    def node(k, h, p="", cls="plain"):
+        return f'<div class="vg-node {cls}">' + (f'<div class="k">{k}</div>' if k else '') + f'<h4>{h}</h4>' + (f'<p>{p}</p>' if p else '') + '</div>'
+    arrow = '<div class="vg-arrow">↓</div>'
+    lanes = [("c", "EIXO CONTÁBIL", "Contábil", ["Reconhecimento", "Mensuração", "Evidenciação"]),
+             ("f", "EIXO FINANCEIRO", "Financeiro", ["Valor econômico", "Desempenho", "Retorno"]),
+             ("e", "EIXO ESTRATÉGICO", "Estratégico", ["Escalabilidade", "Inovação", "Diferenciação"])]
+    lane_html = "".join(
+        f'<div class="vg-lane {c}"><div class="lh"><div class="k">{k}</div><h5>{h}</h5></div>'
+        f'<div class="lb"><ul class="vg-cl">' + "".join(f"<li>{i}</li>" for i in items) + '</ul></div></div>'
+        for c, k, h, items in lanes)
+    return _h(f'''
+<section class="vg-section vg-flow">
+  <div class="vg-head"><span class="eyebrow">Estrutura conceitual</span>
+  <h2>Do ativo intangível ao diagnóstico.</h2>
+  <p>Estrutura do framework proposto: sete etapas que independem dos resultados da amostra. O mesmo ativo intangível pode atravessar os três eixos, e a integração só existe quando há conexão explícita entre eles.</p></div>
+  {node("Entrada", "Ativo intangível")}
+  {arrow}
+  {node("Etapa 1", "Identificação do recurso")}
+  {arrow}
+  {node("Etapa 2", "Evidência documental", "Somente evidência explícita; nada é inferido.")}
+  <div class="vg-arrow3"><span>↓</span><span>↓</span><span>↓</span></div>
+  <div class="vg-lanes">{lane_html}</div>
+  <div class="vg-arrow3"><span>↓</span><span>↓</span><span>↓</span></div>
+  {node("Etapa 3", "Conexões explícitas", "Contábil ↔ Financeiro · Contábil ↔ Estratégico · Financeiro ↔ Estratégico", "gate2")}
+  {arrow}
+  {node("Etapa 4", "Integração", "Mensuração integrada: evidência nos três eixos e conexão entre eles.", "integ")}
+  {arrow}
+  {node("", "Diagnóstico", "Visão integrada da mensuração e da evidência dos ativos intangíveis.", "final")}
+  <div class="vg-flow-foot">Estrutura do framework (conceitual). Os resultados da aplicação às {VG["obs"]} observações empresa-ano aparecem nas seções seguintes.</div>
+</section>''')
+
+def vg_flowchart():
+    A = VG["axis"]
+    pc, pf, pe = _vg_pct("Contábil"), _vg_pct("Financeiro"), _vg_pct("Estratégico")
+    I = VG["integ"]
+    return _h(f'''
+<section class="vg-section vg-flow">
+  <div class="vg-head"><span class="eyebrow">Fluxograma do framework</span>
+  <h2>Do intangível ao valor real de mercado.</h2>
+  <p>Este fluxo representa o framework de mensuração de ativos intangíveis desenvolvido na dissertação. Conforme a estrutura proposta na pesquisa, o percurso parte do ativo intangível, cruza as três fontes de evidência, passa pelos eixos contábil, financeiro e estratégico, exige conexão explícita entre eles e chega à leitura integrada do valor do intangível em fintechs e empresas de base tecnológica.</p></div>
+
+  <div class="vg-node entry"><div class="k">Entrada</div><h4>Ativo intangível da fintech / empresa de base tecnológica</h4>
+  <p>Identificação do fenômeno: ativo intangível e tecnologia/inovação só entram com evidência documental explícita. Ser fintech ou usar tecnologia não basta.</p></div>
+  <div class="vg-arrow">↓</div>
+
+  <div class="vg-sources">
+    <div class="vg-src"><div class="k">Fonte 1 · Literatura</div><b>RSL · 39 artigos</b><p>O que a literatura propõe como mensuração e fonte de valor.</p></div>
+    <div class="vg-src"><div class="k">Fonte 2 · Normas</div><b>CPC / IFRS · {VG["normas"]["requisitos"]} requisitos</b><p>O que as normas exigem e onde o reconhecimento termina.</p></div>
+    <div class="vg-src"><div class="k">Fonte 3 · Empresas</div><b>6 fintechs · {VG["obs"]} observações</b><p>O que as empresas divulgam de fato, em 2021–2025.</p></div>
+  </div>
+  <div class="vg-arrow">↓</div>
+
+  <div class="vg-lanes">
+    <article class="vg-lane c"><div class="lh"><div class="k">EIXO 01</div><h5>Contábil</h5></div><div class="lb">
+      <div class="vg-gate"><b>Pergunta de decisão</b>O recurso é identificável, controlado e gera benefícios econômicos futuros prováveis? (CPC 04 / IAS 38)</div>
+      <div class="vg-out yes"><b>Sim</b>Reconhecido: valor contábil = custo − amortização − impairment (CPC 04, CPC 01).</div>
+      <div class="vg-out no"><b>Não</b>Intangível não reconhecido (ex.: marcas e carteiras de clientes geradas internamente) e segue para o eixo estratégico.</div>
+      <div class="metric"><b>{_pc(pc)}</b>presença nas fintechs ({A["Contábil"]["ev"]}/{A["Contábil"]["tot"]})</div></div></article>
+    <article class="vg-lane f"><div class="lh"><div class="k">EIXO 02</div><h5>Financeiro</h5></div><div class="lb">
+      <div class="vg-gate"><b>Pergunta de decisão</b>Há medida explícita de valor econômico além do valor contábil: fair value, valor recuperável ou métrica da RSL?</div>
+      <div class="vg-out yes"><b>Sim</b>Valor econômico registrado: fair value (CPC 46 / IFRS 13), valor recuperável (CPC 01 / IAS 36), EVA, VAIC, Tobin's Q, Market-to-Book, ROA, ROIC, EBITDA.</div>
+      <div class="vg-out no"><b>Não</b>Lacuna de evidência: permanece só o valor contábil como base comparativa. A métrica não é reconstruída.</div>
+      <div class="metric"><b>{_pc(pf)}</b>presença nas fintechs ({A["Financeiro"]["ev"]}/{A["Financeiro"]["tot"]})</div></div></article>
+    <article class="vg-lane e"><div class="lh"><div class="k">EIXO 03</div><h5>Estratégico</h5></div><div class="lb">
+      <div class="vg-gate"><b>Pergunta de decisão</b>Há recurso ou capacidade descrito explicitamente: capital intelectual, dados, algoritmos, marca, clientes, inovação?</div>
+      <div class="vg-out yes"><b>Sim</b>Fonte de valor registrada como evidência, sem conversão automática em ativo contábil.</div>
+      <div class="vg-out no"><b>Não</b>Sem registro: menção genérica à tecnologia não implica dados, algoritmos ou know-how.</div>
+      <div class="metric"><b>{_pc(pe)}</b>presença nas fintechs ({A["Estratégico"]["ev"]}/{A["Estratégico"]["tot"]})</div></div></article>
+  </div>
+  <div class="vg-arrow">↓</div>
+
+  <div class="vg-node integ"><div class="k">Integração dos eixos</div><h4>Conexões explícitas entre os eixos</h4>
+  <p>Só conta como integração quando o documento conecta expressamente os eixos. Coexistir no mesmo relatório não basta.</p>
+  <div class="vg-links">
+    <div class="vg-link"><b>{I["Contábil ↔ Financeiro"]}</b>Contábil ↔ Financeiro</div>
+    <div class="vg-link"><b>{I["Contábil ↔ Estratégico"]}</b>Contábil ↔ Estratégico</div>
+    <div class="vg-link"><b>{I["Financeiro ↔ Estratégico"]}</b>Financeiro ↔ Estratégico</div>
+  </div></div>
+  <div class="vg-arrow">↓</div>
+
+  <div class="vg-node gate2"><div class="k">Critério de decisão final</div><h4>Há evidência nos três eixos e conexão explícita entre eles?</h4>
+  <p>Sim: mensuração integrada. Não: o valor fica descrito por eixo, com a lacuna sinalizada. No banco atual a mensuração integrada aparece em {I["Mensuração integrada"]} de {VG["obs"]} observações.</p></div>
+  <div class="vg-arrow">↓</div>
+
+  <div class="vg-node final"><div class="k">Resultado do framework</div><h4>Valor real de mercado do intangível</h4>
+  <p>Leitura integrada que soma o que é reconhecido, o que tem valor econômico evidenciado e o que é fonte estratégica de valor ainda não reconhecida.</p>
+  <div class="vg-parcels">
+    <div class="vg-parcel"><b>Parcela reconhecida</b>Eixo contábil: intangíveis no balanço, com amortização e impairment.</div>
+    <div class="vg-parcel"><b>Parcela econômica</b>Eixo financeiro: valor justo, valor recuperável e métricas de desempenho divulgadas.</div>
+    <div class="vg-parcel"><b>Parcela não reconhecida</b>Eixo estratégico: capital intelectual, dados, marca e relacionamento.</div>
+  </div></div>
+  <div class="vg-flow-foot">A composição é conceitual: cada parcela só entra com evidência explícita e rastreável. O framework não estima nem preenche valores ausentes por inferência.</div>
+</section>''')
+
+def vg_matrix():
+    A = VG["axis"]
+    R = VG["rsl_axis"]
+    def cell(axis_tag, big, text, src, gap=False):
+        return (f'<div class="vg-mc{" gap" if gap else ""}"><span class="tag">{axis_tag}</span>'
+                f'<span class="big">{big}</span>{text}<span class="src"><b>Fonte:</b> {src}</span></div>')
+    rows = [
+        ('<div class="vg-mr"><h4>Literatura (RSL)</h4>Os 39 artigos incluídos'
+         '<div class="rule"><b>Regra de evidência</b>Conta o artigo cuja abordagem de mensuração, registrada na leitura integral, inclui o eixo.</div></div>',
+         [cell("Contábil", f'{R["Contábil"]} artigos', 'Reconhecimento, mensuração e evidenciação são fortemente normativos. Nem todo recurso economicamente relevante é reconhecido.', 'RSL, abas Full-Text Review e OUTRAS ANALISES'),
+          cell("Financeiro", f'{R["Financeiro"]} artigos', 'Métricas complementares aproximam valor econômico: EVA, VAIC, Tobin\'s Q, Market-to-Book, ROA, ROIC, EBITDA. Não são universalmente divulgadas.', 'RSL, abas EIXOS PARA FRAMEWORK e OUTRAS ANALISES'),
+          cell("Estratégico", f'{R["Estratégico"]} artigos', 'Capital intelectual (palavra-chave mais frequente, 19 ocorrências), tecnologia e capacidades como fontes de valor. Alta heterogeneidade conceitual.', 'RSL, abas EIXOS PARA FRAMEWORK e OUTRAS ANALISES')]),
+        ('<div class="vg-mr"><h4>Normas</h4>CPC e IFRS/IAS'
+         '<div class="rule"><b>Regra de evidência</b>Requisito com norma e parágrafo citados; a norma delimita o que é reconhecido, não prova a existência do recurso.</div></div>',
+         [cell("Contábil", 'CPC 04 / IAS 38', 'Definição, identificabilidade, controle e benefícios prováveis (itens 8, 12, 13–16, 21); amortização, vida útil e divulgação (88–110, 118–128). CPC 00 e CPC 15 / IFRS 3 completam o núcleo.', 'Extração Normativa, aba Extracao'),
+          cell("Financeiro", 'CPC 46 · CPC 01', 'Fair value como preço de saída e hierarquia de inputs, Níveis 1 a 3 (CPC 46 / IFRS 13); valor recuperável e teste de impairment (CPC 01 / IAS 36).', 'Extração Normativa, abas Extracao e HIERARQUIA NORMATIVA'),
+          cell("Estratégico", 'Limite do reconhecimento', 'Pesquisa é despesa e marcas e listas de clientes gerados internamente não são reconhecidas (CPC 04 / IAS 38, itens 54–56 e 63–64). O que fica fora do balanço é o espaço do eixo estratégico.', 'Extração Normativa, aba Extracao', gap=True)]),
+        ('<div class="vg-mr"><h4>Empresas</h4>6 fintechs, 2021–2025'
+         '<div class="rule"><b>Regra de evidência</b>Vale 1 só com evidência explícita no documento; sem ela vale 0. Não se infere nem se calcula valor ausente.</div></div>',
+         [cell("Contábil", _pc(_vg_pct("Contábil")), 'Concentrado em goodwill (29 de 30 observações), software (27), amortização (24) e impairment (21). Vida útil aparece em 3 e valor justo em 7.', 'Fintechs, abas EIXOS e RESUMO EIXOS'),
+          cell("Financeiro", _pc(_vg_pct("Financeiro")), 'Toda a evidência é valor contábil dos intangíveis (29 de 30); sem ele, o eixo tem 0 de 240 células (0,0%). Valor econômico, EVA, VAIC, Tobin\'s Q, Market-to-Book, ROA, ROIC e EBITDA: nenhuma ocorrência.', 'Fintechs, abas EIXOS e AUDITORIA EIXOS', gap=True),
+          cell("Estratégico", _pc(_vg_pct("Estratégico")), 'Patentes (12), clientes e relacionamento (11), capacitação (10), market share (8) e marca (6). Capital estrutural, algoritmos e know-how: nenhuma ocorrência.', 'Fintechs, abas EIXOS e RESUMO EIXOS', gap=True)]),
+    ]
+    body = '<div class="vg-mh blank"></div><div class="vg-mh c">Contábil</div><div class="vg-mh f">Financeiro</div><div class="vg-mh e">Estratégico</div>'
+    for head, cells in rows:
+        body += head + "".join(cells)
+    return _h(f'''
+<section class="vg-section">
+  <div class="vg-head"><span class="eyebrow">Matriz de triangulação 3 × 3</span>
+  <h2>Literatura, normas e empresas sobre os três eixos.</h2>
+  <p>A contribuição está em comparar as linhas: o que a literatura propõe, o que as normas reconhecem e o que as empresas divulgam de fato. Cada célula indica a fonte e segue a regra de evidência da sua linha.</p></div>
+  <div class="vg-matrix">{body}</div>
+  <div class="vg-cap">Células em tom claro sinalizam lacuna: o eixo é relevante na literatura, mas pouco ou nada aparece na divulgação das empresas. Artigos podem pertencer a mais de um eixo; 3 artigos têm abordagem classificada como outra (data-driven, teórica ou híbrida).</div>
+</section>''')
+
+def vg_triangulation():
+    pc, pf, pe = _vg_pct("Contábil"), _vg_pct("Financeiro"), _vg_pct("Estratégico")
+    rows = "".join(
+        f'<tr><td>{n}</td><td class="n">{_pc(c)}</td><td class="n">{_pc(f)}</td><td class="n">{_pc(e)}</td><td class="n">{i}</td></tr>'
+        for n, c, f, e, i in VG["empresas"])
+    return _h(f'''
+<section class="vg-section">
+  <div class="vg-head"><span class="eyebrow">Triangulação</span>
+  <h2>Onde as três fontes convergem e onde divergem.</h2>
+  <p>A presença documental é de {_pc(pc)} no eixo contábil, {_pc(pf)} no financeiro e {_pc(pe)} no estratégico (células codificadas como 1 sobre o total possível, em {VG["obs"]} observações empresa-ano).</p></div>
+  <div class="vg-tri">
+    <article class="vg-tcard c"><div class="th"><span>Contábil</span><span class="vg-badge">Convergência</span></div><div class="tb">
+      <b>{_pc(pc)}</b> de presença
+      <div class="vg-bar"><i style="width:{pc:.1f}%"></i></div>
+      <ul><li>A literatura (14 artigos) e as normas tratam reconhecimento e mensuração como núcleo.</li>
+      <li>As empresas divulgam sobretudo o que as normas exigem: goodwill, software, amortização e impairment.</li>
+      <li>Ressalva: vida útil (3) e valor justo (7) aparecem pouco.</li></ul></div></article>
+    <article class="vg-tcard f"><div class="th"><span>Financeiro</span><span class="vg-badge">Divergência</span></div><div class="tb">
+      <b>{_pc(pf)}</b> de presença
+      <div class="vg-bar"><i style="width:{pf:.1f}%"></i></div>
+      <ul><li>A literatura propõe 7 métricas complementares e as normas pedem fair value e valor recuperável quando aplicáveis.</li>
+      <li>As empresas mostram apenas o valor contábil; nenhuma métrica econômica foi expressamente divulgada.</li>
+      <li>Ausência documental não é ausência econômica.</li></ul></div></article>
+    <article class="vg-tcard e"><div class="th"><span>Estratégico</span><span class="vg-badge">Divergência parcial</span></div><div class="tb">
+      <b>{_pc(pe)}</b> de presença
+      <div class="vg-bar"><i style="width:{pe:.1f}%"></i></div>
+      <ul><li>A literatura (26 artigos) trata capital intelectual e tecnologia como fonte de valor.</li>
+      <li>As normas deixam esses recursos fora do reconhecimento; as empresas os citam de forma desigual.</li>
+      <li>XP Inc. chega a 42,5%; Nubank registra 0,0%.</li></ul></div></article>
+  </div>
+  <div class="vg-callout"><b>Leitura central:</b> as empresas divulgam sobretudo o que as normas exigem (eixo contábil) e pouco do que a literatura considera fonte de valor (eixos financeiro e estratégico). A diferença entre as linhas da matriz é o que o framework torna visível.</div>
+  <table class="vg-table"><thead><tr><th>Empresa</th><th>Contábil</th><th>Financeiro</th><th>Estratégico</th><th>Conexões C↔E</th></tr></thead><tbody>{rows}</tbody></table>
+  <div class="vg-cap">Percentual de variáveis com evidência explícita em cada eixo, em 5 anos por empresa. Os percentuais são agregados por eixo e dependem do nº de variáveis; no eixo financeiro, 100% da evidência é valor contábil. Fonte: FINTCHS_AMOSTRA_ajustado, abas EIXOS e RESUMO DETALHADO.</div>
+</section>''')
+
+# ============================================================
 # 01 — VISÃO GERAL
 # ============================================================
 if page == "01 · Visão geral":
@@ -1059,8 +1398,13 @@ if page == "01 · Visão geral":
 <div class="presentation-subtitle">A estrutura parte dos três eixos da pesquisa e conduz o ativo intangível até um diagnóstico organizacional integrado.</div>
 <div class="section-copy">O framework proposto nesta pesquisa foi desenvolvido para integrar, de forma estruturada, diferentes perspectivas de mensuração dos ativos intangíveis no contexto das fintechs. Sua construção parte do reconhecimento das limitações dos modelos contábeis tradicionais e articula as dimensões <b>contábeis, financeiras e estratégicas</b>, relacionando normas e critérios contábeis a abordagens e métricas de criação de valor. Dessa forma, o framework busca uma visão integrada dos ativos intangíveis, permitindo relacionar aquilo que é reconhecido e mensurado contabilmente com os aspectos financeiros e estratégicos que contribuem para a geração de valor nas fintechs.</div>
 <div class="stat-strip"><div class="stat"><div class="stat-num">39</div><div class="stat-label">Artigos na RSL</div><div class="stat-note">Corpus final da revisão sistemática.</div></div><div class="stat"><div class="stat-num">3</div><div class="stat-label">Eixos</div><div class="stat-note">Contábil · Financeiro · Estratégico.</div></div><div class="stat"><div class="stat-num">2021–2025</div><div class="stat-label">Período documental</div><div class="stat-note">Recorte utilizado na construção operacional.</div></div></div>
+{vg_base_stats()}
+{vg_concept()}
 <section class="framework-diagram"><div class="diagram-title"><span class="eyebrow">Arquitetura do framework</span><h2>Do ativo intangível ao diagnóstico integrado</h2><p>Um percurso operacional em seis etapas para identificar, analisar e integrar os eixos contábil, financeiro e estratégico.</p></div><div class="framework-steps">{cards}</div><div class="outcome-bar"><div class="outcome-icon">★</div><div><strong>Resultado:</strong><span> perfil integrado dos ativos intangíveis, evidenciando a presença relativa dos eixos <b>Contábil</b>, <b>Financeiro</b> e <b>Estratégico</b>.</span></div></div><div class="diagram-foot">Framework operacional de mensuração integrada de ativos intangíveis</div></section>
 <section class="axes-section"><div class="axes-intro"><span class="eyebrow">03 eixos operacionais</span><h2>Contábil, financeiro e estratégico.</h2><p>O mesmo ativo intangível pode estar relacionado a mais de um eixo. A classificação apresentada abaixo orienta a leitura do framework e corresponde aos intangíveis considerados nas etapas de análise.</p></div><div class="axes-columns">{columns_html}</div></section>
+{vg_flowchart()}
+{vg_matrix()}
+{vg_triangulation()}
 <div class="section-kicker">O que o usuário faz</div><div class="section-title">O quadro transforma evidência em diagnóstico.</div><div class="findings"><div class="finding"><div class="finding-no">01 · IDENTIFICAR</div><div><h3>Mapear o intangível</h3><p>Selecionar os recursos intangíveis relevantes para a organização.</p></div></div><div class="finding"><div class="finding-no">02 · RELACIONAR</div><div><h3>Observar os três eixos</h3><p>Responder questões objetivas em cada dimensão aplicável ao recurso.</p></div></div><div class="finding"><div class="finding-no">03 · DIAGNÓSTICO</div><div><h3>Visualizar o perfil</h3><p>Os resultados são consolidados automaticamente em percentuais por dimensão.</p></div></div><div class="finding"><div class="finding-no">04 · INTEGRAR</div><div><h3>Interpretar o conjunto</h3><p>O diagnóstico evidencia como os intangíveis se distribuem e se sobrepõem entre as perspectivas.</p></div></div></div>
 '''
     st.markdown(page1, unsafe_allow_html=True)
@@ -1193,7 +1537,7 @@ if page == "05 · Diagnóstico":
     st.html("""
     <div class="page-hero" style="background:#101828;">
       <div class="num">05 · SAÍDA DO FRAMEWORK</div>
-      <h1>Diagnóstico<br>integrado.</h1>
+      <h1>diagnóstico<br>integrado.</h1>
       <p>O resultado aparece automaticamente a partir das respostas registradas nos três eixos. Não há uma nova etapa de perguntas.</p>
     </div>
     """)

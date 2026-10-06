@@ -1429,6 +1429,7 @@ if page == "01 · Visão geral":
 {vg_concept()}
 <section class="framework-diagram"><div class="diagram-title"><span class="eyebrow">Arquitetura do framework</span><h2>Do ativo intangível ao diagnóstico integrado</h2><p>Um percurso operacional em seis etapas para identificar, analisar e integrar os eixos contábil, financeiro e estratégico.</p></div><div class="framework-steps">{cards}</div><div class="outcome-bar"><div class="outcome-icon">★</div><div><strong>Resultado:</strong><span> perfil integrado dos ativos intangíveis, evidenciando a presença relativa dos eixos <b>Contábil</b>, <b>Financeiro</b> e <b>Estratégico</b>.</span></div></div><div class="diagram-foot">Framework operacional de mensuração integrada de ativos intangíveis</div></section>
 <section class="axes-section"><div class="axes-intro"><span class="eyebrow">03 eixos operacionais</span><h2>Contábil, financeiro e estratégico.</h2><p>O mesmo ativo intangível pode estar relacionado a mais de um eixo. A classificação apresentada abaixo orienta a leitura do framework e corresponde aos intangíveis considerados nas etapas de análise.</p></div><div class="axes-columns">{columns_html}</div></section>
+<div class="section-copy">As etapas apresentadas no fluxograma a seguir foram definidas com base nos resultados encontrados nesta dissertação. O framework integra os achados da revisão sistemática da literatura (RSL) às evidências das análises normativa e documental das fintechs.</div>
 {vg_flowchart()}
 {vg_matrix()}
 {vg_triangulation()}

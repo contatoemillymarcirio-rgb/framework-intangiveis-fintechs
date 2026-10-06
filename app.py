@@ -535,6 +535,8 @@ h1,h2,h3{letter-spacing:-.04em;}
 .section-kicker{margin-top:4rem;color:#7A5CFF;font-size:.7rem;font-weight:950;letter-spacing:.15em;text-transform:uppercase;}
 .section-title{font-size:clamp(2rem,4vw,4rem);line-height:.98;max-width:920px;margin:.55rem 0 1.3rem;}
 .section-copy{max-width:850px;color:#667085;line-height:1.75;font-size:1rem;}
+.framework-source-note{max-width:100%;margin:2.5rem 0 1.5rem;padding:1.35rem 1.5rem;border:1px solid #D0D5DD;border-left:5px solid var(--lime);background:linear-gradient(110deg,#F7FBEF 0%,#FFFFFF 72%);border-radius:12px;color:#475467;font-size:1rem;line-height:1.7;box-shadow:0 8px 24px rgba(16,24,40,.06);}
+.framework-note-label{display:block;margin-bottom:.45rem;color:#344054;font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;}
 .stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem;}
 .stat{
   background:#fff;border:1px solid var(--line);border-radius:22px;padding:1.5rem;
@@ -1429,7 +1431,7 @@ if page == "01 · Visão geral":
 {vg_concept()}
 <section class="framework-diagram"><div class="diagram-title"><span class="eyebrow">Arquitetura do framework</span><h2>Do ativo intangível ao diagnóstico integrado</h2><p>Um percurso operacional em seis etapas para identificar, analisar e integrar os eixos contábil, financeiro e estratégico.</p></div><div class="framework-steps">{cards}</div><div class="outcome-bar"><div class="outcome-icon">★</div><div><strong>Resultado:</strong><span> perfil integrado dos ativos intangíveis, evidenciando a presença relativa dos eixos <b>Contábil</b>, <b>Financeiro</b> e <b>Estratégico</b>.</span></div></div><div class="diagram-foot">Framework operacional de mensuração integrada de ativos intangíveis</div></section>
 <section class="axes-section"><div class="axes-intro"><span class="eyebrow">03 eixos operacionais</span><h2>Contábil, financeiro e estratégico.</h2><p>O mesmo ativo intangível pode estar relacionado a mais de um eixo. A classificação apresentada abaixo orienta a leitura do framework e corresponde aos intangíveis considerados nas etapas de análise.</p></div><div class="axes-columns">{columns_html}</div></section>
-<div class="section-copy">As etapas apresentadas no fluxograma a seguir foram definidas com base nos resultados encontrados nesta dissertação. O framework integra os achados da revisão sistemática da literatura (RSL) às evidências das análises normativa e documental das fintechs.</div>
+<aside class="framework-source-note"><span class="framework-note-label">Base de construção do fluxograma</span><div>As etapas apresentadas no fluxograma a seguir foram definidas com base nos resultados encontrados nesta dissertação. O framework integra os achados da revisão sistemática da literatura (RSL) às evidências das análises normativa e documental das fintechs.</div></aside>
 {vg_flowchart()}
 {vg_matrix()}
 {vg_triangulation()}
